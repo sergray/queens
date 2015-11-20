@@ -4,11 +4,14 @@ from flask.json import jsonify
 from solver import compute
 
 app = Flask(__name__)
+debug = True
+app.debug = debug
 
 
 @app.route("/max_queens", methods=['post'])
 def max_queens():
     request_input = request.get_json()
+    app.logger.debug(request_input)
     try:
         queens_list = compute(**request_input)
     except TypeError:
@@ -19,4 +22,4 @@ def max_queens():
 
 
 if __name__ == "__main__":
-    app.run('0.0.0.0', 8080)
+    app.run('0.0.0.0', 8080, debug=debug)
