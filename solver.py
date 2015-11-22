@@ -1,4 +1,7 @@
 def compute(rows, columns, max_queens_on_sight, initial_queens):
+    """
+
+    """
     field = [[0 for j in range(columns)] for i in range(rows)]
     for queen in initial_queens:
         x = queen['x']; y = queen['y']
@@ -34,6 +37,7 @@ def on_sight_count(x, y, field):
     6
     >>> on_sight_count(1, 1, [[0, 1, 0, 0], [0, 0, 1, 0], [1, 0, 0, 0], [0, 0, 0, 1]])
     4
+    >>> on_sight_count(4, 0, [[0, 0, 0, 1], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [1, 0, 0, 0]])
     """
     rows = len(field)
     cols = len(field[0])
@@ -48,7 +52,7 @@ def on_sight_count(x, y, field):
         count += field[i][j]
         i -= 1; j -= 1
     # right-down
-    i = x + 1; y = x + 1
+    i = x + 1; j = y + 1
     while i < rows and j < cols:
         count += field[i][j]
         i += 1; j += 1
